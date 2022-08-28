@@ -3,13 +3,16 @@ package com.lab.capas.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
+import com.lab.capas.InitDataLoader;
 import com.lab.capas.entity.Employee;
+import com.lab.capas.proxy.Iemployee;
 import com.lab.capas.repository.EmployeeRepositiry;
 
 @Service
-public class EmployeeService {
+public class EmployeeService implements Iemployee{
 	@Autowired
 	EmployeeRepositiry repo;
 	public Employee addEmployee(Employee emp) {
@@ -28,5 +31,9 @@ public class EmployeeService {
 	public void deleteEmployeeById(Employee emp) {
 		repo.delete(emp);
 		System.out.println("Employee deleted::" + emp);
+	}
+	@Override
+	public CommandLineRunner loadData(InitDataLoader loader) {
+		return args->loader.loadData();
 	}
 }

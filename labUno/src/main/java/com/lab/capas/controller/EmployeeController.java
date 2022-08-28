@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lab.capas.entity.Employee;
+import com.lab.capas.proxy.Iemployee;
 import com.lab.capas.service.EmployeeService;
 
 @RestController
 public class EmployeeController {
+	
 	@Autowired
-	EmployeeService service;
+	Iemployee service;
 	@RequestMapping("/TCS/employees")
 	public Iterable<Employee> findAllEmployee() {
 		return service.findAllEmployee();
